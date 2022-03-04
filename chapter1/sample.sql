@@ -52,3 +52,43 @@ WHERE name LIKE "プリン%" --? プリンから始まるデータを取得
 
 --* 後方一致
 WHERE name LIKE "%プリン" --? プリンが頭にあるデータを取得
+
+
+--! NOT演算子
+SELECT *
+FROM purchases
+WHERE NOT character_name = "にんじゃわんこ";
+
+--* プリンを含まないデータを取得
+SELECT *
+FROM purchases
+WHERE NOT name LIKE "%プリン%";
+
+--! IS NULL / IS NOT NULL
+SELECT * 
+FROM purchases
+WHERE price IS NULL; --? price = NULL では駄目
+WHERE price IS NOT NULL; 
+
+
+--! AND / OR演算子
+SELECT *
+FROM purchases
+WHERE category = "食費"
+AND character_name = "ひつじ仙人";
+
+WHERE category = "食費"
+OR character_name = "にんじゃわんこ";
+
+--! ORDER BY
+SELECT *
+FROM purchases
+WHERE character_name = "にんじゃわんこ";
+ORDER BY price ASC; -- 昇順で取得 値が低い順
+ORDER BY price DESC; -- 降順で取得 値が高い順
+
+--! LIMIT
+SELECT *
+FROM purchases
+LIMIT 10; --? 10このデータを取得する
+
